@@ -1,15 +1,21 @@
-# Secure Server Configs
+### Hardening en Windows (hardening-windows.reg)
 
-Este repositorio contiene configuraciones de seguridad para entornos Linux, Windows y Docker.
+; Deshabilitar SMBv1
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters]
+"SMB1"=dword:00000000
 
-## Estructura
+; Restringir acceso remoto al registro
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg]
+"Enabled"=dword:00000000
 
-- `Linux/` → Configuraciones de endurecimiento de seguridad para servidores Linux.
-- `Windows/` → Configuración de hardening en el registro de Windows.
-- `Docker/` → Dockerfile seguro con permisos restringidos.
+; Bloquear ejecución de macros en Office
+[HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Excel\Security]
+"VBAWarnings"=dword:00000004
 
-## Uso
+; Restringir ejecución de scripts en PowerShell
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell]
+"EnableScripts"=dword:00000000
 
-1. **Linux:** Aplicar las configuraciones en `/etc/security/`.
-2. **Windows:** Ejecutar `hardening-windows.reg` para aplicar políticas de seguridad.
-3. **Docker:** Construir el contenedor con `docker build -t secure-image .`
+; Reforzar políticas de contraseñas
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa]
+"LimitBlankPasswordUse"=dword:00000001
