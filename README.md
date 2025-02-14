@@ -1,23 +1,77 @@
-### README.md
-
 # Secure Server Configs
 
-Este repositorio contiene configuraciones de seguridad para entornos Linux, Windows y Docker.
+Este repositorio contiene configuraciones y scripts de seguridad para reforzar servidores Linux, Windows y entornos Docker. Diseñado para fortalecer la seguridad desde el primer momento, incluye configuraciones de hardening, reglas de firewall y ajustes para minimizar vulnerabilidades.
 
-## Estructura
+## 📂 Estructura del Repositorio
 
-- `Linux/` → Configuraciones de endurecimiento de seguridad para servidores Linux.
-- `Windows/` → Configuración de hardening en el registro de Windows.
-- `Docker/` → Dockerfile seguro con permisos restringidos.
+```
+Secure-Server-Configs/
+│── Linux/
+│   ├── hardening-ubuntu.conf         # Configuración de seguridad para Ubuntu
+│   ├── firewall-rules.sh             # Reglas de firewall y bloqueo de tráfico
+│   ├── hardening-linux.sh            # Script de automatización para refuerzo de seguridad
+│── Windows/
+│   ├── hardening-windows.reg         # Configuración de seguridad en Registro de Windows
+│   ├── hardening-windows.ps1         # Script automatizado de seguridad en PowerShell
+│── Docker/
+│   ├── secure-dockerfile.conf        # Dockerfile con configuración segura
+│   ├── hardening-docker.sh           # Script de refuerzo de seguridad en contenedores Docker
+│── README.md                         # Documentación principal
+```
 
-## Uso
+---
 
-1. **Linux:** Aplicar las configuraciones en `/etc/security/` y reiniciar los servicios correspondientes.
-2. **Windows:** Ejecutar `hardening-windows.reg` para aplicar políticas de seguridad.
-3. **Docker:** Construir el contenedor con `docker build -t secure-image .`
+## 🔒 Hardening en Linux
 
-## Seguridad Adicional
+### **1. Configuración de Seguridad en `hardening-ubuntu.conf`**
+- Deshabilita `root` por SSH.
+- Configura reglas estrictas en `sysctl`.
+- Habilita `fail2ban` para proteger contra ataques de fuerza bruta.
+- Establece reglas de firewall restrictivas con `ufw`.
 
-- **Windows:** Bloqueo de ejecución de scripts en PowerShell.
-- **Linux:** Configuración de Fail2Ban y deshabilitación de ICMP.
-- **Docker:** Uso de AppArmor y Seccomp para restringir permisos.
+### **2. Aplicación de Seguridad con `hardening-linux.sh`**
+Ejecutar el script:
+```bash
+chmod +x hardening-linux.sh
+sudo ./hardening-linux.sh
+```
+---
+
+## 🛡️ Hardening en Windows
+
+### **1. Configuración Segura en `hardening-windows.reg`**
+- Desactiva SMBv1 para prevenir ataques como WannaCry.
+- Bloquea el acceso remoto al registro.
+- Deshabilita la ejecución de macros en Office.
+- Restringe scripts en PowerShell.
+
+### **2. Aplicación de Seguridad con `hardening-windows.ps1`**
+Ejecutar en PowerShell como Administrador:
+```powershell
+Set-ExecutionPolicy Unrestricted -Scope Process
+.\hardening-windows.ps1
+```
+---
+
+## 🏢 Seguridad en Docker
+
+### **1. Dockerfile Seguro en `secure-dockerfile.conf`**
+- Utiliza un usuario restringido (`secureuser`).
+- Aplica `AppArmor` y `Seccomp` para limitar permisos.
+- Bloquea el acceso a `root`.
+
+### **2. Aplicación de Seguridad en Contenedores con `hardening-docker.sh`**
+Ejecutar:
+```bash
+chmod +x hardening-docker.sh
+sudo ./hardening-docker.sh
+```
+---
+
+## 💜 Licencia
+Este proyecto está bajo la licencia MIT. ¡Úsalo y contribuye!
+
+---
+
+## ✉️ Contacto
+Si tienes sugerencias o mejoras, ¡contáctame!
