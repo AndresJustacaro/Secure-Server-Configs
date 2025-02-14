@@ -1,5 +1,3 @@
-### Hardening en Windows (hardening-windows.reg)
-
 Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System]
@@ -10,43 +8,3 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System]
 "DisableCMD"=dword:00000001
 "DisableRegistryTools"=dword:00000001
-
----
-
-### Dockerfile Seguro (secure-dockerfile.conf)
-
-# Imagen base segura
-FROM ubuntu:latest
-
-# Añadir usuario sin privilegios
-RUN groupadd -r securegroup && useradd -r -g securegroup secureuser
-
-# Copiar archivos con permisos mínimos
-COPY --chown=secureuser:securegroup app /app
-
-# Configurar permisos estrictos
-RUN chmod 700 /app
-
-# Ejecutar con usuario restringido
-USER secureuser
-CMD ["/app/start.sh"]
-
----
-
-### README.md
-
-# Secure Server Configs
-
-Este repositorio contiene configuraciones de seguridad para entornos Linux, Windows y Docker.
-
-## Estructura
-
-- `Linux/` → Configuraciones de endurecimiento de seguridad para servidores Linux.
-- `Windows/` → Configuración de hardening en el registro de Windows.
-- `Docker/` → Dockerfile seguro con permisos restringidos.
-
-## Uso
-
-1. **Linux:** Aplicar las configuraciones en `/etc/security/`.
-2. **Windows:** Ejecutar `hardening-windows.reg` para aplicar políticas de seguridad.
-3. **Docker:** Construir el contenedor con `docker build -t secure-image .`
