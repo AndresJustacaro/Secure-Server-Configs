@@ -1,13 +1,15 @@
-# Secure Server Configs  
-Repositorio con configuraciones seguras para servidores Linux, Windows y Docker.  
+# Secure Server Configs
 
-## 📌 Contenido  
-- **Linux/** → Reglas de firewall y configuraciones de hardening.  
-- **Windows/** → Configuraciones de registro para mejorar la seguridad.  
-- **Docker/** → Archivos Docker seguros para contenedores.  
+Este repositorio contiene configuraciones de seguridad para entornos Linux, Windows y Docker.
 
-## 🚀 Cómo usar  
-1. Descarga los archivos del sistema que necesites.  
-2. Aplica las configuraciones según la documentación.  
-3. Contribuye con mejoras o sugerencias.  
+## Estructura
 
+- `Linux/` → Configuraciones de endurecimiento de seguridad para servidores Linux.
+- `Windows/` → Configuración de hardening en el registro de Windows.
+- `Docker/` → Dockerfile seguro con permisos restringidos.
+
+## Uso
+
+1. **Linux:** Aplicar las configuraciones en `/etc/security/`.
+2. **Windows:** Ejecutar `hardening-windows.reg` para aplicar políticas de seguridad.
+3. **Docker:** Construir el contenedor con `docker build -t secure-image .`
