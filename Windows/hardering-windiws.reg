@@ -1,10 +1,15 @@
-Windows Registry Editor Version 5.00
+# Secure Server Configs
 
-[HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System]
-"EnableLUA"=dword:00000001
-"ConsentPromptBehaviorAdmin"=dword:00000005
-"EnableSecureUIAPaths"=dword:00000001
+Este repositorio contiene configuraciones de seguridad para entornos Linux, Windows y Docker.
 
-[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System]
-"DisableCMD"=dword:00000001
-"DisableRegistryTools"=dword:00000001
+## Estructura
+
+- `Linux/` → Configuraciones de endurecimiento de seguridad para servidores Linux.
+- `Windows/` → Configuración de hardening en el registro de Windows.
+- `Docker/` → Dockerfile seguro con permisos restringidos.
+
+## Uso
+
+1. **Linux:** Aplicar las configuraciones en `/etc/security/`.
+2. **Windows:** Ejecutar `hardening-windows.reg` para aplicar políticas de seguridad.
+3. **Docker:** Construir el contenedor con `docker build -t secure-image .`
